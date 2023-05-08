@@ -10,8 +10,8 @@ spring:
         enabled: true
         service-id: elm-config-server
 
-eurekahost1: 8.130.64.168
-eurekahost2: 8.130.54.125
+eurekahost1: x.x.x.x # 换成部署了该eureka server的主机的公网IP
+eurekahost2: x.x.x.x #  换成部署了该eureka server的主机的公网IP
 
   
 eureka:
@@ -23,7 +23,7 @@ eureka:
   instance:
     # 上线后使用这个配置
 #    prefer-ip-address: false
-#    ip-address: 8.130.64.168
+#    ip-address: x.x.x.x  # 换成本机的公网IP
 #    instance-id: ${eureka.instance.ip-address}:${server.port}
 #    hostname: ${eureka.instance.ip-address}
 #    lease-renewal-interval-in-seconds: 5
