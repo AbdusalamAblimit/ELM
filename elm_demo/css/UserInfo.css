@@ -1,0 +1,144 @@
+/********** 总容器 **********/
+.wrapper{
+	width: 100%;
+	height: 100%;
+}
+
+/********** header **********/
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	background-color: #0097FF;
+	color: #fff;
+	font-size: 4.8vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/********** 用户信息 **********/
+.wrapper .userinfo{
+	width: 100%;
+	margin-top: 12vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 2.5vw;
+}
+.wrapper .userinfo .userinfo-img{
+	width: 100%;
+	height: 35vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper .userinfo .userinfo-img img{
+	width: 30vw;
+	height: 30vw;
+	border-radius: 15vw;
+}
+.wrapper .userinfo .userinfo-id{
+	font-size: 6vw;
+	margin-top: 1vw;
+}
+/********** 钱包 **********/
+.wrapper .wallet{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 2.5vw;
+	font-size: 5vw;
+	background-color: #DDDDDD;
+	color: #FFFFFF;
+}
+.wrapper .wallet .wallet-balance{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1.5vw;
+}
+.wrapper .wallet .wallet-balance p{
+	box-sizing: border-box;
+	padding: 1.5vw;
+	background-color: #00BBFF;
+	border-radius: 1.5vw;
+	text-align: start;
+}
+.wrapper .wallet .wallet-operation{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1.5vw;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .wallet .wallet-operation li{
+	background-color: #00BBFF;
+	box-sizing: border-box;
+	padding: 1.5vw 6vw;
+	border-radius: 1.5vw;
+	text-decoration:underline;
+}
+.wrapper .wallet .transaction-details{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1.5vw;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .wallet .transaction-details p{
+	box-sizing: border-box;
+	padding: 1.5vw;
+	border-radius: 1.5vw;
+	background-color: #00BBFF;
+	text-decoration:underline;
+}
+/********** 积分 **********/
+.wrapper .credit{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	padding: 2.5vw;
+	background-color: #0097FF;
+	font-size: 5vw;
+	color: #DDDDDD;
+}
+
+/**********底部菜单************/
+.wrapper .footer{
+	width: 100%;
+	height: 14vw;
+	border-top: solid 1px #DDD;
+	background-color: #fff;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .footer li{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #999;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .fooder li p{
+	font-size: 2.8vw;
+}
+.wrapper .fooder li i{
+	font-size: 5vw;
+}
