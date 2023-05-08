@@ -1,0 +1,21 @@
+server:
+  port: 13000
+spring:
+  application:
+    name: elm-eureke-server
+
+
+eurekahost1: x.x.x.x # 换成部署了该eureka server的主机的公网IP
+eurekahost2: x.x.x.x #  换成部署了该eureka server的主机的公网IP
+
+
+eureka:
+  instance:
+    hostname: ${eurekahost1} #需修改为改机ip
+  client:
+    register-with-eureka: false   # 是否将自己注册到eureka
+    fetch-registry: false         # 拉取服务列表
+    service-url:
+      defaultZone: http://${eurekahost2}:${server.port}/eureka/
+  server:
+    disable-delta-for-remote-regions: false    # 自我保护机制
