@@ -1,0 +1,43 @@
+server:
+  port: 15001
+spring:
+  application:
+    name: elm-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://xxxxxxx.git   # 换成配置文件所在的仓库地址
+          username: xxxxxxx          # 换成拥有仓库权限的用户的用户名
+          password: xxxxxxx          # 换成拥有仓库权限的用户的密码
+          default-label: elm-configs
+          timeout: 15000
+    
+  rabbitmq:
+#    host: 8.130.64.168
+    addresses: 8.130.64.168:5672
+#    port: 5672
+    username: elm2
+    password: 111111
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - busrefresh
+              
+eurekahost1: x.x.x.x # 换成部署了该eureka server的主机的公网IP
+eurekahost2: x.x.x.x #  换成部署了该eureka server的主机的公网IP
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eurekahost1}:13000/eureka/,http://${eurekahost2}:13000/eureka/
+#      defaultZone: http://localhost:13000/eureka/
+  instance:
+    prefer-ip-address: false
+#    ip-address: x.x.x.x  # 换成本机的公网IP
+    instance-id: ${eureka.instance.ip-address}:${server.port}
+    hostname: ${eureka.instance.ip-address}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
