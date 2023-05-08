@@ -1,0 +1,122 @@
+spring:
+  application:
+    name: elm-gateway-server
+  #gateway的配置
+  cloud:
+    gateway:
+
+      httpclient:
+          connect-timeout: 20000
+          response-timeout: 20s
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      default-filters:  #全局熔断降级
+      - name: CircuitBreaker
+        args:
+          name: globalCircuitBreaker
+          fallbackUri: forward:/globalFallback
+      
+
+
+      routes:    # 路由
+      - id: userServer
+        uri: lb://elm-user-server
+        predicates:
+        -  Path=/users/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: userCircuitBreaker
+            fallbackUri: forward:/userFallback
+
+      - id: businessServer
+        uri: lb://elm-business-server
+        predicates:
+        -  Path=/businesses/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: businessCircuitBreaker
+            fallbackUri: forward:/businessFallback
+        - name: BusinessOrderTypeCacheGet
+        - name: BusinessCacheGet
+
+
+      - id: cartServer
+        uri: lb://elm-cart-server
+        predicates:
+        -  Path=/carts/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: cartCircuitBreaker
+            fallbackUri: forward:/cartFallback
+
+      - id: deliveryServer
+        uri: lb://elm-delivery-server
+        predicates:
+        -  Path=/delivery-addresses/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: deliveryCircuitBreaker
+            fallbackUri: forward:/deliveryFallback
+
+      - id: ordersServer
+        uri: lb://elm-order-server
+        predicates:
+        -  Path=/orders/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: orderCircuitBreaker
+            fallbackUri: forward:/orderFallback
+
+      - id: pointServer
+        uri: lb://elm-point-server
+        predicates:
+        -  Path=/points/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: pointCircuitBreaker
+            fallbackUri: forward:/pointFallback
+      
+      - id: walletServer
+        uri: lb://elm-wallet-server
+        predicates:
+        -  Path=/virtual-wallets/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: walletCircuitBreaker
+            fallbackUri: forward:/walletFallback
+
+
+      - id: foodServer
+        uri: lb://elm-food-server
+        predicates:
+        -  Path=/foods/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: foodCircuitBreaker
+            fallbackUri: forward:/foodFallback
+        - name: FoodCacheGet
+        - name: BusinessFoodCacheGet
+  
+    loadbalancer:
+      eager-load:
+        clients:
+        - elm-user-server
+        - elm-business-server
+        - elm-food-server
+        - elm-cart-server
+        - elm-delivery-server
+        - elm-order-server
+        - elm-point-server
+        - elm-wallet-server

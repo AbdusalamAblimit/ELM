@@ -1,0 +1,27 @@
+logging:
+  level:
+    '[org.springframework]': debug
+    '[team.tjusw.mapper]': debug
+    '[org.springframework.boot.autoconfigure]': error
+
+spring:
+  application:
+    name:   elm-order-server
+  datasource:
+    username: root
+    password: 111111
+    url: jdbc:mysql://x.x.x.x/elm2?characterEncoding=utf-8  # x.x.x.x换成数据库服务器的公网IP
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+        
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: team.tjusw.po
+
+redisClientConfig:
+  host: x.x.x.x # x.x.x.x 换成Redis数据库服务器的公网IP
+  port: 6379
+  timeout: 10000   #ms
